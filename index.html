@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motion Ime Festival</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('Snapinsta.app_383201910_1044261680354419_5856331414741268967_n_1080.jpg');;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        header {
+            background-color: #ff9100cb;
+            font-size: 30px;
+            color: #fff;
+            padding: 1em;
+            width: 100%;
+        }
+
+        .main-container {
+            display: flex;
+            font-size: 25px;
+            justify-content: space-around;
+            width: 80%;
+            margin-top: 20px;
+        }
+
+        #loginForm, #registerForm {
+            background-color: #f5971df5;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(235, 9, 255, 0.959);
+            width: 45%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+
+        input {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #fcc11fda;
+            color: #fff;
+            font-size: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <h1>Motion Ime Festival</h1>
+    </header>
+    <section class="main-container">
+        <form id="registerForm">
+            <h2>Registrasi</h2>
+            <label for="registerUsername">Username:</label>
+            <input type="text" id="registerUsername" name="registerUsername" required>
+            <label for="registerPassword">Password:</label>
+            <input type="password" id="registerPassword" name="registerPassword" required>
+            <button type="submit">Registrasi</button>
+        </form>
+        <form id="loginForm">
+            <h2>Login</h2>
+            <label for="loginUsername">Username:</label>
+            <input type="text" id="loginUsername" name="loginUsername" required>
+            <label for="loginPassword">Password:</label>
+            <input type="password" id="loginPassword" name="loginPassword" required>
+            <button type="submit">Login</button>
+        </form>
+    </section>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var loginUsername = document.getElementById("loginUsername").value;
+            var loginPassword = document.getElementById("loginPassword").value;
+
+            var storedUsername = localStorage.getItem("registeredUsername");
+            var storedPassword = localStorage.getItem("registeredPassword");
+
+            if (loginUsername === storedUsername && loginPassword === storedPassword) {
+                alert("Login berhasil!");
+                window.location.href = "halamanUtama1.html";
+
+            } else {
+                alert("Login gagal. Periksa kembali username dan password Anda.");
+            }
+        });
+
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            var registerUsername = document.getElementById("registerUsername").value;
+            var registerPassword = document.getElementById("registerPassword").value;
+
+            localStorage.setItem("registeredUsername", registerUsername);
+            localStorage.setItem("registeredPassword", registerPassword);
+
+            alert("Registrasi berhasil! Silakan login dengan akun baru Anda.");
+
+            window.location.reload();
+        });
+    </script>
+</body>
+</html>
